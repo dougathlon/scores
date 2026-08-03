@@ -1,0 +1,25 @@
+{
+  "name": "SCORES",
+  "short_name": "SCORES",
+  "description": "One shared event score, many private performances.",
+  "id": "./",
+  "start_url": "./#/today",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#efe7d7",
+  "theme_color": "#efe7d7",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
