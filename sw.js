@@ -1,4 +1,4 @@
-const CACHE_NAME = "scores-shell-3afca7b6d965";
+const CACHE_NAME = "scores-shell-8f6f8c126609";
 const INDEX_PATH = "/scores/index.html";
 const PRECACHE = [
   "/scores/LICENSES/Apache-2.0.txt",
@@ -8,7 +8,7 @@ const PRECACHE = [
   "/scores/LICENSES/Special-Elite-METADATA.pb",
   "/scores/LICENSES/Vite-LICENSE.md",
   "/scores/THIRD_PARTY_NOTICES.md",
-  "/scores/assets/index-C4AuzeWh.js",
+  "/scores/assets/index-BHFcCTsM.js",
   "/scores/assets/index-DqOE8oqZ.css",
   "/scores/assets/water-yam-base-paper.webp",
   "/scores/assets/water-yam-paper-sheet-material.webp",
@@ -56,13 +56,8 @@ self.addEventListener("activate", (event) => {
     const previousCaches = (await caches.keys()).filter((key) => key.startsWith("scores-shell-") && key !== CACHE_NAME);
     await Promise.all(previousCaches.map((key) => caches.delete(key)));
     await self.clients.claim();
-    // Notebook databases are independent and never deleted with cached assets.
-    if (previousCaches.length) {
-      const clients = await self.clients.matchAll({ type: "window" });
-      for (const client of clients.filter((client) => client.url.startsWith(self.registration.scope))) {
-        client.postMessage({ type: "scores-shell-updated" });
-      }
-    }
+    // Do not force-reload an open document: it may contain an in-flight save.
+    // The next navigation loads this shell; notebook databases remain untouched.
   })());
 });
 
